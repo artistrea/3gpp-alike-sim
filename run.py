@@ -2,7 +2,12 @@ from simulator import run_simulation
 from simulator.parameters import ScenarioParams, PropagationModelEnum
 
 import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
+
+font = {'size'   : 14}
+
+matplotlib.rc('font', **font)
 
 def rect(dt, N, end):
     t = np.linspace(0, end * dt, N)
@@ -237,7 +242,7 @@ def build_autocorr(alpha_sqrd, tau, ni):
 
 s = 0 if scenario.los else 1
 
-chosen_results = results_3_2
+chosen_results = results_3_1
 autocorr_1_1 = build_autocorr(
     chosen_results.clusters_power[s:],
     chosen_results.clusters_delay[s:],
@@ -245,7 +250,7 @@ autocorr_1_1 = build_autocorr(
 )
 max_vn = np.max(chosen_results.clusters_doppler[0 if scenario.los else 1:])
 ds = chosen_results.delay_spread*1e6
-speed = 50
+speed = 5
 
 rho_t_1 = 0.95
 rho_t_2 = 0.9
